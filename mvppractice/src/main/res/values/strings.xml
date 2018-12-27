@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">mvppractice</string>
+    <string name="mobile">请输入手机号</string>
+    <string name="password">请输入密码</string>
+</resources>
