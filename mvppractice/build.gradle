@@ -35,4 +35,13 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.okhttp3:okhttp-bom:3.12.1'
+    //okhttp拦截器
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.0'
+
+    //黄油刀
+    implementation 'com.jakewharton:butterknife:8.7.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
+
+    //图片加载框架，glide
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
 }

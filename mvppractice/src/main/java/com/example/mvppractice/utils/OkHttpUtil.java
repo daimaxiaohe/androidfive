@@ -16,6 +16,7 @@ import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
  * はすてすゃの
@@ -27,7 +28,11 @@ public class OkHttpUtil {
     private static  OkHttpUtil minstance;
     //私有构造方法
     private OkHttpUtil(){
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
         okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(httpLoggingInterceptor)
+                .addNetworkInterceptor(httpLoggingInterceptor)
                 .writeTimeout(5,TimeUnit.SECONDS)
                 .readTimeout(5,TimeUnit.SECONDS)
                 .connectTimeout(5,TimeUnit.SECONDS)
