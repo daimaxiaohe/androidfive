@@ -10,8 +10,10 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/day2" />
+            <option value="$PROJECT_DIR$/day3" />
             <option value="$PROJECT_DIR$/library" />
             <option value="$PROJECT_DIR$/mvp" />
+            <option value="$PROJECT_DIR$/mvppractice" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

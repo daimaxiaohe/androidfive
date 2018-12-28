@@ -6,6 +6,8 @@ import com.example.mvppractice.api.UserApi;
 import com.example.mvppractice.bean.UserBean;
 import com.example.mvppractice.contract.ILogincontract;
 import com.example.mvppractice.net.ResponceCallBack;
+import com.example.mvppractice.utils.OkHttpCallBack;
+import com.example.mvppractice.utils.OkHttpUtil;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -29,7 +31,32 @@ public class LoginModel implements ILogincontract.ILoginModel {
 
     @Override
     public void setokhttp(HashMap<String,String> map, String string, final ResponceCallBack callBack) {
-        //okhttp网络请求框架
+        OkHttpUtil.getMinstance().doPost(map, string, new OkHttpCallBack() {
+            @Override
+            public void success(final UserBean userBean) {
+                if (callBack!=null){
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            callBack.success(userBean);
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void fail(final String string) {
+                if (callBack!=null){
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            callBack.fail(string);
+                        }
+                    });
+                }
+            }
+        });
+        /*//okhttp网络请求框架
         OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
         //请求体
         FormBody.Builder builder = new FormBody.Builder();
@@ -59,7 +86,7 @@ public class LoginModel implements ILogincontract.ILoginModel {
                     getjson(result,callBack);
                 }
             }
-        });
+        });*/
     }
 
     /**
@@ -67,7 +94,7 @@ public class LoginModel implements ILogincontract.ILoginModel {
      * @param string
      * @param callBack
      */
-    private void getjson(String string, final ResponceCallBack callBack){
+  /*  private void getjson(String string, final ResponceCallBack callBack){
         //开始解析
         final UserBean userBean = new Gson().fromJson(string, UserBean.class);
         //通过接口传递数据
@@ -79,5 +106,5 @@ public class LoginModel implements ILogincontract.ILoginModel {
                 }
             });
         }
-    }
+    }*/
 }
