@@ -10,6 +10,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myView = findViewById(R.id.myview);
-
+        myView.invalidate();
     }
 }
