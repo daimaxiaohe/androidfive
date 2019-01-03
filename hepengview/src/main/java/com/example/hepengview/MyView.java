@@ -13,12 +13,10 @@ import android.view.View;
  * 2019-01-02.
  */
 public class MyView extends View {
-
+    private int cx=50;
+    private int cy=50;
     private Paint paint;
-    private int circleX;
-    private int circleY;
-    private int mRaduis = 100;
-
+    private int radius=50;
     public MyView(Context context) {
         super(context);
         init();
@@ -33,56 +31,56 @@ public class MyView extends View {
         super(context, attrs, defStyleAttr);
         init();
     }
-
+    //测量的方法
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
-
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-    }
-
+    //布局的方法
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
     }
-
+    //绘制的方法
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawCircle(circleX,circleY,mRaduis,paint);
+        canvas.drawCircle(cx,cy,radius,paint);
     }
 
-    //初始化的方法啊
+    //初始化画笔的方法
     private void init(){
         paint = new Paint();
-        paint.setColor(Color.RED);
+        paint.setColor(Color.GREEN);
         paint.setAntiAlias(true);
-        paint.setStyle(Paint.Style.STROKE);//空心
-        paint.setStrokeWidth(20);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setStrokeWidth(70);
     }
+    //事件分发
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()){
-            case MotionEvent.ACTION_DOWN://按下
-                circleX = (int) event.getX();//获取距离父控件的x轴坐标
-//                circleX = (int) event.getRawX();//获取距离屏幕边缘的x轴坐标
-                circleY = (int) event.getY();
-                invalidate();//重绘
-
-                break;
-            case MotionEvent.ACTION_MOVE://滑动
-                circleX = (int) event.getX();
-                circleY = (int) event.getY();
+            case MotionEvent.ACTION_DOWN:
+                //将当前得位置告诉x y轴
+                cx = (int) event.getX();
+                cy = (int) event.getY();
                 invalidate();
                 break;
+            case MotionEvent.ACTION_MOVE:
+                //将当前得位置告诉x y轴
+                cx = (int) event.getX();
+                cy = (int) event.getY();
+                invalidate();
+                break;
+            case MotionEvent.ACTION_UP:
+
+                break;
         }
-        return super.onTouchEvent(event);
+        return true;
     }
-    /*public MyView(Context context,AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+
+    /*public MyView(Context context, @androidx.annotation.Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }*/
 }
